@@ -26,6 +26,13 @@ public class Tutorial {
     @Column(name ="title")
     String title;
 
+    public boolean getPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
 
 
 }
