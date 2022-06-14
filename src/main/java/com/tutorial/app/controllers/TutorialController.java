@@ -45,11 +45,11 @@ public class TutorialController {
     }
 
 
-    //Get individual tutorial
-    @GetMapping("/tutorials/{id}")
-    public ResponseEntity getTutorialBylId(@PathVariable("id") int id) throws TutorialNotFoundException {
-        return new ResponseEntity(tutorialService.findTutorialById(id), HttpStatus.OK);
-    }
+//    //Get individual tutorial
+//    @GetMapping("/tutorials/{id}")
+//    public ResponseEntity getTutorialBylId(@PathVariable("id") int id) throws TutorialNotFoundException {
+//        return new ResponseEntity(tutorialService.findTutorialById(id), HttpStatus.OK);
+//    }
 
 
     //Update tutorial by ID
@@ -93,5 +93,17 @@ public class TutorialController {
         return new ResponseEntity<List>((List) tutorialRepository.findAllByPublished(true), HttpStatus.OK);
     }
 
-    
+  //Searching tutorial using keyword
+    @GetMapping("/tutorials/{title}")
+    public ResponseEntity<List> getTutorialListByKeyword( @PathVariable("title")  String title) throws TutorialNotFoundException {
+        return new ResponseEntity<List>((List) tutorialService.listAllByKeyword(title), HttpStatus.OK);
+    }
+
+    //Delete all tutorials
+    @DeleteMapping("/tutorials")
+    public void deleteTutorials(){
+        Tutorial tutorial;
+            tutorialRepository.deleteAll();
+
+    }
 }

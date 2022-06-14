@@ -42,4 +42,11 @@ public class TutorialService {
         return (List) tutorialRepository.findAll();
     }
 
+//    //filter/search by keyword
+    public List<Tutorial> listAllByKeyword(String title) {
+        if (title != null) {
+          return tutorialRepository.search(title);
+       }
+     return tutorialRepository.findAll();
+    }
 }

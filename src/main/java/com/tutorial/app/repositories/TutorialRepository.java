@@ -10,7 +10,8 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Integer> {
 
     List<Tutorial> findAllByPublished(Boolean published);
 
-//    @Query("select t from tutorials t where t.published = ?1")
-//    List<Tutorial> findAllByPublished(Integer published);
+//    //filter/search functionality using query
+    @Query("SELECT t FROM Tutorial t WHERE  t.title LIKE %?1%")
+    public List<Tutorial> search(String title);
 
 }
